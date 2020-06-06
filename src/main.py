@@ -38,12 +38,14 @@ def menuAwalSudoku():
             if menu == "1":
                 # input nama file
                 namaFile = input(" Masukkan Nama File Gambar : ")
+                fileAns = "ans_"+namaFile+".txt"
                 # read image
                 unsolved = imgToMatrix(data_folder/namaFile)
 
             elif menu == "2":
                 # input nama file
                 namaFile = input(" Masukkan Nama File : ")
+                fileAns = "ans_"+namaFile
                 # read file
                 unsolved = readFile(data_folder/namaFile)
 
@@ -54,10 +56,10 @@ def menuAwalSudoku():
             os.system('cls')
             pass
 
-    return unsolved, namaFile
+    return unsolved, namaFile, fileAns
 
 
-def mainSolveSudoku(unsolved, namaFile):
+def mainSolveSudoku(unsolved, namaFile, fileAns):
 
     # method untuk melakukan :
     # 1. print unsolved sudoku
@@ -70,18 +72,19 @@ def mainSolveSudoku(unsolved, namaFile):
     print(matrixToStr(solved))
 
     # 3. print koordinat dengan angka lima
-    print(" KOORDINAT ANGKA LIMA")
+    print(" KOORDINAT KARTESIUS ANGKA LIMA : ")
+    print(" cepat beri tahu tim anda...")
     lima = getKoordinat(5, unsolved)
     print(allKoorToStr(lima))
 
     # 4. write file to file eksternal dengan nama file : ans_[nama_file_tc].txt
-    fileAns = "ans_"+namaFile
     stringToFile = " Solved Sudoku :\n" + \
         matrixToStr(solved)+" Koordinat Area Nomor 5 :\n"+allKoorToStr(lima)
     writeFile(data_folder/fileAns, stringToFile)
+    print(" Hasil penyelesaian sudoku telah tersimpan di file "+fileAns+" !!")
 
 
 # main program
-unsolved, namaFile = menuAwalSudoku()
+unsolved, namaFile, fileAns = menuAwalSudoku()
 print()
-mainSolveSudoku(unsolved, namaFile)
+mainSolveSudoku(unsolved, namaFile, fileAns)

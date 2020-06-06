@@ -15,8 +15,8 @@ def getKoordinat(angka, matrix):
         for j in range(9):
             if matrix[i][j] == angka:
                 # convert dari indeks matriks ke koordinat xy
-                koordinat["x"] = j
-                koordinat["y"] = 8-i
+                koordinat["x"] = j+1
+                koordinat["y"] = 8-i+1
                 # masukkan ke dalam array
                 array.append(koordinat.copy())
     return array
